@@ -16,7 +16,6 @@ import javax.inject.Inject
 @HiltViewModel
 class BeerViewModel @Inject constructor(
     private val beerRepository: BeerRepository,
-    private val beerDao: BeerDao,
 ) : ViewModel() {
 
     val beersLivedata = MutableLiveData<PagingData<Beer>>()
@@ -33,7 +32,7 @@ class BeerViewModel @Inject constructor(
 
     fun updateBeer(beer: Beer) {
         viewModelScope.launch(Dispatchers.IO) {
-            beerDao.updateBeer(beer)
+            beerRepository.updateBeer(beer)
         }
     }
 }
